@@ -6,21 +6,45 @@
   <body>
     <h1>ACME Numbers and Events</h1>
     <h2>+</h2>
+    <div></div>
     <h3></h3>
   </body>
   <script>
-    const plus = document.querySelector("H2")
+    const h2 = document.querySelector("H2")
+    const h3 = document.querySelector("H3")
+    const div = document.querySelector("div")
+    const p = document.querySelector("p")
 
-    plus.addEventListener("click", generateRandomNum)
+    h2.addEventListener("click", generateRandomNum)
 
-    const min = 1
-    const max = 100
-    function generateRandomNum(min, max) {
-      min = Math.ceil(min)
-      max = Math.floor(max)
-      result = Math.floor(Math.random() * (max - min + 1) + min)
-      console.log(result)
+    let resultArr = []
+
+    function generateRandomNum() {
+      let result = Math.floor(Math.random() * 99) + 1
+      resultArr.push(result)
+
+
+      const p = document.createElement("p")
+      p.innerHTML = result
+      h3.appendChild(p)
+
+      p.addEventListener("click", removeElement)
+
+      function removeElement(event){
+        removedNumber = parseInt(event.target.innerHTML,10)
+        let index = resultArr.indexOf(removedNumber)
+        event.target.parentNode.removeChild(event.target)
+        if (index > -1) {
+          resultArr.splice(index, 1)
+        }
+        return resultArr
+      }
+
+      let average = resultArr.reduce((accumulator,number)=> (accumulator + number)/resultArr.length)
+      div.innerHTML = "The average of all the numbers is " + average
     }
+
+
 
 
   </script>
