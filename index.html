@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>ACME Numbers and Events</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>ACME Numbers and Events</h1>
+    <h2>+</h2>
+    <h3></h3>
+  </body>
+  <script>
+    const plus = document.querySelector("H2")
+
+    plus.addEventListener("click", generateRandomNum)
+
+    const min = 1
+    const max = 100
+    function generateRandomNum(min, max) {
+      min = Math.ceil(min)
+      max = Math.floor(max)
+      result = Math.floor(Math.random() * (max - min + 1) + min)
+      console.log(result)
+    }
+
+
+  </script>
+  </html>
