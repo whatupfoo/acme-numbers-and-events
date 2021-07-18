@@ -1,21 +1,25 @@
 <html>
   <head>
     <title>ACME Numbers and Events</title>
-    <style></style>
+    <style>
+      .button {
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
     <h1>ACME Numbers and Events</h1>
-    <h2>+</h2>
+    <button>+</button>
     <div></div>
     <h3></h3>
   </body>
   <script>
-    const h2 = document.querySelector("H2")
+    const button = document.querySelector("button")
     const h3 = document.querySelector("H3")
     const div = document.querySelector("div")
     const p = document.querySelector("p")
 
-    h2.addEventListener("click", generateRandomNum)
+    button.addEventListener("click", generateRandomNum)
 
     let resultArr = []
 
@@ -35,17 +39,15 @@
         let index = resultArr.indexOf(removedNumber)
         event.target.parentNode.removeChild(event.target)
         if (index > -1) {
-          resultArr.splice(index, 1)
+          resultArr = resultArr.splice(index, 1)
         }
-        return resultArr
+      let average = resultArr.reduce((accumulator,number)=> (accumulator + number)/resultArr.length)
+      div.innerHTML = "The average of all the numbers is " + average
       }
 
       let average = resultArr.reduce((accumulator,number)=> (accumulator + number)/resultArr.length)
       div.innerHTML = "The average of all the numbers is " + average
     }
-
-
-
 
   </script>
   </html>
