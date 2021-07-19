@@ -1,23 +1,32 @@
 <html>
   <head>
     <title>ACME Numbers and Events</title>
-    <style>
-      .button {
-        justify-content: center;
-      }
-    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>ACME Numbers and Events</h1>
-    <button>+</button>
+    <h2>
+      <button id="plus">+</button>
+      <button id="refresh">Start Over</button>
+    </h2>
     <div></div>
     <h3></h3>
   </body>
   <script>
-    const button = document.querySelector("button")
+    const refreshButton = document.getElementById('refresh')
+    const button = document.getElementById('plus')
     const h3 = document.querySelector("H3")
     const div = document.querySelector("div")
     const p = document.querySelector("p")
+
+    refreshButton.addEventListener("click", refreshPage)
+
+    function refreshPage(){
+      location.reload();
+      return false;
+    }
 
     button.addEventListener("click", generateRandomNum)
 
@@ -39,13 +48,15 @@
         let index = resultArr.indexOf(removedNumber)
         event.target.parentNode.removeChild(event.target)
         if (index > -1) {
-          resultArr = resultArr.splice(index, 1)
+          resultArr.splice(index, 1)
         }
-      let average = resultArr.reduce((accumulator,number)=> (accumulator + number)/resultArr.length)
-      div.innerHTML = "The average of all the numbers is " + average
+        console.log(resultArr)
+        let average = resultArr.reduce((accumulator,number)=> accumulator + number) / resultArr.length
+        div.innerHTML = "The average of all the numbers is " + average
       }
 
-      let average = resultArr.reduce((accumulator,number)=> (accumulator + number)/resultArr.length)
+      console.log(resultArr)
+      let average = resultArr.reduce((accumulator,number)=> accumulator + number) / resultArr.length
       div.innerHTML = "The average of all the numbers is " + average
     }
 
